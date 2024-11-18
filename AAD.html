@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Ball Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const paddle = {
+            width: 100,
+            height: 20,
+            x: (canvas.width - 100) / 2,
+        };
+
+        const balls = [];
+        const ballRadius = 10;
+        const ballSpeed = 3;
+        let score = 0;
+
+        function createBall() {
+            const x = Math.random() * (canvas.width - ballRadius * 2) + ballRadius;
+            balls.push({ x: x, y: 0 });
+        }
+
+        function update() {
+            // Move balls
+            balls.forEach((ball, index) => {
+                ball.y += ballSpeed;
+
+                // Check for catch
+                if (
+                    ball.y + ballRadius > canvas.height - paddle.height &&
+                    ball.x > paddle.x &&
+                    ball.x < paddle.x + paddle.width
+                ) {
+                    balls.splice(index, 1);
+                    score++;
+                }
+
+                // Remove off-screen balls
+                if (ball.y - ballRadius > canvas.height) {
+                    balls.splice(index, 1);
+                }
+            });
+
+            // Create new balls
+            if (Math.random() < 0.02) {
+                createBall();
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw paddle
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(paddle.x, canvas.height - paddle.height, paddle.width, paddle.height);
+
+            // Draw balls
+            ctx.fillStyle = 'red';
+            balls.forEach(ball => {
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ballRadius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.closePath();
+            });
+
+            // Draw score
+            ctx.fillStyle = 'black';
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, 10, 20);
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        canvas.addEventListener('mousemove', function(e) {
+            const relativeX = e.clientX - canvas.offsetLeft;
+            if (relativeX > 0 && relativeX < canvas.width) {
+                paddle.x = relativeX - paddle.width / 2;
+            }
+        });
+
+        gameLoop();
+    </script>
+</body>
+</html>

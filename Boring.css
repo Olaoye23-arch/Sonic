@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #090844d3;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: right;
+    background-color: #ffffff;
+}
+button {
+    float: right;
+}
+nav a {
+    color: rgb(0, 0, 0);
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+nav a:hover {
+    color: black;
+}
+main {
+    padding: 20px;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+p{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.team-container {
+    text-align: center;
+    padding: 20px;
+}
+.team-container h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+.team-members {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.member {
+    width: 200px;
+    text-align: center;
+}
+.member img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.member h3 {
+    margin: 10px 0 5px;
+}
+.member p {
+    margin: 0;
+    color: gray;
+}
+.Cars {
+    text-align: center;
+    padding: 20px;
+}
+.Cars h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+.WIP {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.Rides{
+    width: 200px;
+    text-align: center;
+}
+.Rides img{
+    width: 100%;
+    height: auto;
+    border-radius: 70%;
+}
+.Rides h3 {
+    margin: 10px 0 5px;
+}
+.Rides p {
+    margin: 0;
+    color: gray;
+    justify-content: center;
+}
+nav a:first-child{
+    margin-right: auto;
+}
+.three{
+    background-color: aqua;
+}
+.two{
+    background-color: blue;
+}
+.one{
+    background-color: cadetblue;
+}
